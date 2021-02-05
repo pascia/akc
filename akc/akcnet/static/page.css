@@ -2,6 +2,7 @@
   font-family: 'Calibri', 'Trebuchet MS', sans-serif;
   background-color: #232733;
   color: #FFFFFF;
+  word-wrap: break-word;
 }
 
 a.logo{
