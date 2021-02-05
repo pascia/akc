@@ -57,7 +57,7 @@ def main(request):
         forum.append(i[1])
         yazar.append(i[2])
         tarih.append(tarihbul(i[3]))
-        metin.append(i[4])
+        metin.append(i[4][:126])
         id.append(i[5])
         tur.append(i[6])
         im.execute(f"SELECT count(konu_id) FROM yorum WHERE konu_id={i[5]};")
