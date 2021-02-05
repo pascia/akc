@@ -25,7 +25,7 @@ SECRET_KEY = 'kmucuk$e+zp2ntqx1=qeqalbnsb-ddt#e3%0y=fbef%l#cqi3*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", "pascia-akc.zeet.app"]
 
 
 # Application definition
