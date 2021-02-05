@@ -190,7 +190,7 @@ def konuac(request):
 
 
 def konuac1(request):
-    kullanici = request.GET.get("kullanici","")
+    kullanici = request.GET.get("kullanici","")[:16]
     baslik = request.GET.get("baslik",None)
     metin = request.GET.get("metin",None)
     tur = request.GET.get("tur",None)
@@ -223,11 +223,11 @@ def konuac1(request):
     return HttpResponseRedirect("/")
 
 def yorumyap1(request,id):
-    yazar = str(request.GET.get("yazar",""))[0:12]
+    yazar = str(request.GET.get("yazar",""))[:16]
     metin = str(request.GET.get("metin",None))
 
 
-    if len(yazar)>3 and len(metin)>20:
+    if len(yazar)>3 and len(metin)>10:
         fdb = sql.connect('./dbs/forum.db')
         im = fdb.cursor()
         im.execute(f'SELECT count(*) FROM yorum WHERE konu_id={id} AND altyorum=0;')
@@ -330,7 +330,7 @@ def yanitla(request):
     return render(request, "konu.html", context)
 
 def yanityap1(request,id,sira):
-    yazar = str(request.GET.get("yazar",""))[0:12]
+    yazar = str(request.GET.get("yazar",""))[:16]
     metin = str(request.GET.get("metin",None))
 
     if len(yazar)>3 and len(metin)>20:
