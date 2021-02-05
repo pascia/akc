@@ -57,7 +57,7 @@ def main(request):
         forum.append(i[1])
         yazar.append(i[2])
         tarih.append(tarihbul(i[3]))
-        metin.append(i[4][:126])
+        metin.append(i[4])
         id.append(i[5])
         tur.append(i[6])
         im.execute(f"SELECT count(konu_id) FROM yorum WHERE konu_id={i[5]};")
@@ -66,7 +66,7 @@ def main(request):
     for i in range(len(metin)):
         im.execute(f"SELECT metin FROM metin WHERE id={metin[i]}")
         m = im.fetchall()
-        metinler.append(m[0][0][:255])
+        metinler.append(m[0][0][:64])
         if len(m[0][0])/800<1:
             sure.append(str(round((len(m[0][0])/800)*60))+" saniye")
         else:
