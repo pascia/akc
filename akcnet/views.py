@@ -1,7 +1,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from akcnet.forms import SignUpForm
+from django.contrib.auth.models import User
+from akcnet.forms import kayitform
+from django.shortcuts import redirect
 from ipware import get_client_ip
 import csv
 import sys
@@ -351,14 +353,12 @@ def yanityap1(request,id,sira):
 
 def kaydol(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = kayitform(request.POST)
+
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('')
+            print(request.POST.get("kullanici_adi", ""))
+            return redirect('/')
     else:
-        form = SignUpForm()
+        form = kayitform()
+        print("else")
     return render(request, 'kaydol.html', {'form': form})
